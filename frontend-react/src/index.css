@@ -1,0 +1,424 @@
+/* ============================================
+   DARK WEB THREAT INTELLIGENCE - GLOBAL STYLES
+   Cyber Security Dashboard Theme
+   ============================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (NEON GLOW SYSTEM)
+   ============================================ */
+:root {
+  /* Primary Colors */
+  --color-cyber: #00E5E1;
+  --color-cyber-dark: #00b8b5;
+  --color-cyber-light: #4dfffb;
+  
+  /* Background Colors */
+  --color-bg-primary: #0d1117;
+  --color-bg-secondary: #131c2b;
+  --color-bg-card: #1a2535;
+  --color-bg-hover: #1f2d42;
+  
+  /* Risk Colors */
+  --color-risk-critical: #ff4b4b;
+  --color-risk-high: #ff6b35;
+  --color-risk-medium: #ffd93d;
+  --color-risk-low: #00d97e;
+  --color-risk-safe: #00E5E1;
+  
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-muted: #6c757d;
+  
+  /* Glow Effects */
+  --glow-cyber: 0 0 20px rgba(0, 229, 225, 0.4);
+  --glow-cyber-intense: 0 0 35px rgba(0, 229, 225, 0.7);
+  --glow-red: 0 0 20px rgba(255, 75, 75, 0.4);
+  --glow-yellow: 0 0 20px rgba(255, 217, 61, 0.4);
+  --glow-green: 0 0 20px rgba(0, 217, 126, 0.4);
+  
+  /* Borders */
+  --border-cyber: 1px solid rgba(0, 229, 225, 0.2);
+  --border-cyber-hover: 1px solid rgba(0, 229, 225, 0.5);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   DIGITAL GRID BACKGROUND
+   ============================================ */
+.cyber-grid-bg {
+  background-color: var(--color-bg-primary);
+  background-image: 
+    linear-gradient(rgba(0, 229, 225, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 225, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  position: relative;
+}
+
+.cyber-grid-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at top right, rgba(0, 229, 225, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   GLASSMORPHISM CARDS
+   ============================================ */
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(19, 28, 43, 0.9) 0%,
+    rgba(26, 37, 53, 0.85) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 229, 225, 0.15);
+  border-radius: 16px;
+  transition: all var(--transition-normal);
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 229, 225, 0.4);
+  box-shadow: var(--glow-cyber);
+}
+
+/* ============================================
+   GLOW CARD COMPONENT
+   ============================================ */
+.glow-card {
+  background: linear-gradient(145deg, #131c2b, #1a2535);
+  border: 1px solid rgba(0, 229, 225, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-cyber), transparent);
+  opacity: 0.8;
+}
+
+.glow-card:hover {
+  border-color: rgba(0, 229, 225, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), var(--glow-cyber);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SCAN LINE ANIMATION
+   ============================================ */
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-cyber), transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+@keyframes scan-line {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ============================================
+   GLOW PULSE ANIMATION
+   ============================================ */
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(0, 229, 225, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 35px rgba(0, 229, 225, 0.7);
+  }
+}
+
+/* ============================================
+   RISK BADGES
+   ============================================ */
+.badge-critical {
+  background: linear-gradient(135deg, var(--color-risk-critical), #cc3c3c);
+  color: white;
+  box-shadow: var(--glow-red);
+  animation: glow-pulse-red 1.5s infinite;
+}
+
+.badge-high {
+  background: linear-gradient(135deg, var(--color-risk-high), #e55a2b);
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+}
+
+.badge-medium {
+  background: linear-gradient(135deg, var(--color-risk-medium), #f0c800);
+  color: #0d1117;
+  box-shadow: var(--glow-yellow);
+}
+
+.badge-low {
+  background: linear-gradient(135deg, var(--color-risk-low), #00b368);
+  color: #0d1117;
+  box-shadow: var(--glow-green);
+}
+
+.badge-safe {
+  background: linear-gradient(135deg, var(--color-risk-safe), #00b8b5);
+  color: #0d1117;
+  box-shadow: var(--glow-cyber);
+}
+
+@keyframes glow-pulse-red {
+  0%, 100% { box-shadow: 0 0 15px rgba(255, 75, 75, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(255, 75, 75, 0.7); }
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-cyber {
+  background: linear-gradient(135deg, var(--color-cyber), var(--color-cyber-dark));
+  color: #0d1117;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 20px rgba(0, 229, 225, 0.3);
+}
+
+.btn-cyber:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 229, 225, 0.5);
+}
+
+.btn-cyber:active {
+  transform: translateY(-1px);
+}
+
+.btn-cyber-outline {
+  background: transparent;
+  color: var(--color-cyber);
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 25px;
+  border: 2px solid var(--color-cyber);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn-cyber-outline:hover {
+  background: rgba(0, 229, 225, 0.1);
+  box-shadow: var(--glow-cyber);
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+.input-cyber {
+  background-color: var(--color-bg-secondary);
+  border: 2px solid rgba(0, 229, 225, 0.2);
+  border-radius: 12px;
+  color: var(--color-text-primary);
+  padding: 12px 16px;
+  font-size: 1rem;
+  transition: all var(--transition-normal);
+  width: 100%;
+}
+
+.input-cyber:focus {
+  outline: none;
+  border-color: var(--color-cyber);
+  box-shadow: 0 0 20px rgba(0, 229, 225, 0.2);
+}
+
+.input-cyber::placeholder {
+  color: var(--color-text-muted);
+}
+
+.textarea-cyber {
+  background-color: var(--color-bg-secondary);
+  border: 2px solid rgba(0, 229, 225, 0.2);
+  border-radius: 12px;
+  color: var(--color-text-primary);
+  padding: 16px;
+  font-size: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  resize: vertical;
+  min-height: 150px;
+  transition: all var(--transition-normal);
+  width: 100%;
+}
+
+.textarea-cyber:focus {
+  outline: none;
+  border-color: var(--color-cyber);
+  box-shadow: 0 0 20px rgba(0, 229, 225, 0.2);
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 225, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 225, 0.5);
+}
+
+/* ============================================
+   TABLE STYLES
+   ============================================ */
+.table-cyber {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-cyber th {
+  background: rgba(0, 229, 225, 0.05);
+  color: var(--color-cyber);
+  font-weight: 600;
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0, 229, 225, 0.2);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.table-cyber td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0, 229, 225, 0.08);
+  color: var(--color-text-secondary);
+}
+
+.table-cyber tr:hover td {
+  background: rgba(0, 229, 225, 0.03);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-cyber { color: var(--color-cyber); }
+.text-gradient {
+  background: linear-gradient(90deg, #ffffff, var(--color-cyber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-cyber { border-color: rgba(0, 229, 225, 0.2); }
+.border-cyber-hover:hover { border-color: rgba(0, 229, 225, 0.5); }
+
+.bg-cyber-dark { background-color: var(--color-bg-primary); }
+.bg-cyber-card { background-color: var(--color-bg-secondary); }
+
+/* ============================================
+   CHART CONTAINER
+   ============================================ */
+.chart-container {
+  background: var(--color-bg-secondary);
+  border: 1px solid rgba(0, 229, 225, 0.15);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* ============================================
+   SIDEBAR ACTIVE STATE
+   ============================================ */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: rgba(0, 229, 225, 0.08);
+  color: var(--color-text-primary);
+}
+
+.nav-item.active {
+  background: rgba(0, 229, 225, 0.15);
+  color: var(--color-cyber);
+  border-left: 3px solid var(--color-cyber);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-cyber);
+  box-shadow: var(--glow-cyber);
+}

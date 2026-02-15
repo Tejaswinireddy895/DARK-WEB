@@ -1,0 +1,19 @@
+BERT Model Performance Metrics
+==================================================
+
+Test Accuracy: 1.0000 (100.00%)
+Test F1 Score: 1.0000
+
+                  precision    recall  f1-score   support
+
+  Identity Theft       1.00      1.00      1.00        43
+ Financial Fraud       1.00      1.00      1.00        42
+      Drug Sales       1.00      1.00      1.00        54
+   Weapons Sales       1.00      1.00      1.00        60
+Hacking Services       1.00      1.00      1.00        60
+  Fake Documents       1.00      1.00      1.00        46
+          Normal       1.00      1.00      1.00        45
+
+        accuracy                           1.00       350
+       macro avg       1.00      1.00      1.00       350
+    weighted avg       1.00      1.00      1.00       350
