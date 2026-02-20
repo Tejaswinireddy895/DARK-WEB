@@ -1,0 +1,27 @@
+.case-files {
+    background-color: #008b8b; /* Dark Cyan */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.case-files h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.case-files p {
+    font-size: 1em;
+}
+
+@media (max-width: 600px) {
+    .case-files {
+        padding: 10px;
+    }
+    .case-files h1 {
+        font-size: 1.5em;
+    }
+    .case-files p {
+        font-size: 0.9em;
+    }
+}
