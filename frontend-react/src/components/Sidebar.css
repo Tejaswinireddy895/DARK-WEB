@@ -1,0 +1,20 @@
+.sidebar {
+  background-color: #0f4c75; /* Dark cyan background */
+  color: #ffffff; /* White text color */
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidebar a {
+  color: #ffffff; /* White links */
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #1b262c; /* Darker background on hover */
+}
